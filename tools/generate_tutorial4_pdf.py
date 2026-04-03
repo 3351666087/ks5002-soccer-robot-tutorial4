@@ -19,6 +19,7 @@ ASSETS = DOCS / "assets"
 OUTPUT = DOCS / "Tutorial4_Submission_3351666087.pdf"
 TRANSCRIPT = DOCS / "tutorial4_ai_transcript.md"
 REFLECTION = DOCS / "tutorial4_reflection.md"
+REPO_URL = "https://github.com/3351666087/ks5002-soccer-robot-tutorial4"
 
 PAGE_WIDTH = 13.333 * inch
 PAGE_HEIGHT = 7.5 * inch
@@ -75,6 +76,22 @@ def styles():
             fontSize=12,
             leading=14,
             textColor=PALETTE["ink"],
+        ),
+        "repo_title": ParagraphStyle(
+            "RepoTitle",
+            parent=base["Normal"],
+            fontName="Helvetica-Bold",
+            fontSize=12.5,
+            leading=14,
+            textColor=colors.white,
+        ),
+        "repo_body": ParagraphStyle(
+            "RepoBody",
+            parent=base["Normal"],
+            fontName="Helvetica",
+            fontSize=8.5,
+            leading=10.5,
+            textColor=colors.white,
         ),
         "body": ParagraphStyle(
             "Body",
@@ -278,6 +295,21 @@ def first_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, Paragrap
     draw_chip(c, 164, 368, "2 AI sections highlighted", PALETTE["teal_soft"])
     draw_chip(c, 288, 368, "3 adaptive edge policies", PALETTE["blue_soft"])
 
+    draw_shadow(c, 40, 328, 880, 34, 14)
+    c.saveState()
+    c.setFillColor(PALETTE["blue"])
+    c.roundRect(40, 328, 880, 34, 14, stroke=0, fill=1)
+    c.restoreState()
+    draw_paragraph(
+        c,
+        f"GitHub Repository: {REPO_URL}",
+        st["repo_body"],
+        56,
+        337,
+        848,
+        12,
+    )
+
     scenario_body = (
         "Scenario: a smart campus football-training robot that can move, detect distance, capture the ball, "
         "and execute a release-and-ram kick with lightweight edge intelligence.\n\n"
@@ -287,7 +319,7 @@ def first_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, Paragrap
     draw_card(
         c,
         40,
-        200,
+        180,
         330,
         150,
         PALETTE["card"],
@@ -307,7 +339,7 @@ def first_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, Paragrap
     draw_card(
         c,
         390,
-        220,
+        200,
         530,
         130,
         colors.white,
@@ -324,7 +356,7 @@ def first_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, Paragrap
     draw_card(
         c,
         390,
-        32,
+        20,
         255,
         170,
         PALETTE["teal_soft"],
@@ -343,7 +375,7 @@ def first_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, Paragrap
     draw_card(
         c,
         665,
-        32,
+        20,
         255,
         170,
         PALETTE["gold_soft"],
@@ -355,7 +387,7 @@ def first_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, Paragrap
 
     c.setFont("Helvetica", 8)
     c.setFillColor(PALETTE["muted"])
-    c.drawString(40, 14, "Code evidence: soccer_bot.py, main.py, config.py, remote_controller.py | Prepared for user 3351666087")
+    c.drawString(40, 14, "Code evidence: soccer_bot.py, main.py, config.py, remote_controller.py | GitHub repo highlighted on this page")
 
 
 def second_page(c: canvas.Canvas, content: dict[str, str], st: dict[str, ParagraphStyle]):
